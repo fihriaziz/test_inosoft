@@ -16,11 +16,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['middleware' => 'api'], function () {
 });
 
+Route::get('/stocks', [VehicleController::class, 'getStock']);
+
+Route::post('/sell', [VehicleController::class, 'store']);
+
 Route::post('/login', [AuthController::class, 'login']);
-
-
-Route::post('/create', [VehicleController::class, 'store']);
