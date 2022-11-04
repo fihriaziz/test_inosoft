@@ -3,7 +3,7 @@
 namespace App\Repositories\Sale;
 
 use App\Models\Sale;
-use App\Models\Vehicle;
+use Illuminate\Http\Request;
 
 class SaleRepository
 {
@@ -16,15 +16,25 @@ class SaleRepository
         ], 200);
     }
 
-    public function find($id)
+    public function sell(Request $req)
     {
-        return Vehicle::find($id);
-    }
+        try {
+            $sale = new Sale();
+            $sale->user_id = $req->user_id;
+            $sale->vehicle_id = $req->vehicle_id;
+            $sale->qty = $req->qty;
+            $sale->save();
 
-    public function reduceStock($id, $input)
-    {
-        $vehicle = $this->find($id);
-        $vehicle->stock -= $input;
-        $vehicle->save();
+            $vehicle = $sale->vehicle()->first();
+            $vehicle->stock = $vehicle->stock - $sale->qty;
+            $vehicle->save();
+
+            return response()->json([
+                'data' => $sale,
+                'message' => 'Sell vehicle successfull'
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()]);
+        }
     }
 }

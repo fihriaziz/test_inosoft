@@ -4,29 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use App\Models\Vehicle;
+use App\Repositories\Sale\SaleRepository;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
+    protected $saleRepository;
+
+    public function __construct(SaleRepository $saleRepository)
+    {
+        $this->saleRepository = $saleRepository;
+    }
 
     // sell
     public function store(Request $req)
     {
         try {
-            $sale = new Sale();
-            $sale->user_id = $req->user_id;
-            $sale->vehicle_id = $req->vehicle_id;
-            $sale->qty = $req->qty;
-            $sale->save();
-
-            $vehicle = $sale->vehicle()->first();
-            $vehicle->stock = $vehicle->stock - $sale->qty;
-            $vehicle->save();
-
-            return response()->json([
-                'data' => $sale,
-                'message' => 'Sell vehicle successfull'
-            ], 201);
+            return $this->saleRepository->sell($req);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
