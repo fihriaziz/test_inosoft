@@ -23,8 +23,6 @@ class VehicleController extends Controller
             $vehicle->stock = $vehicle->stock - $sale->qty;
 
             // return $vehicle;
-            $vehicle->save();
-
             return response()->json([
                 'data' => $sale,
                 'message' => 'Sell vehicle successfull'
