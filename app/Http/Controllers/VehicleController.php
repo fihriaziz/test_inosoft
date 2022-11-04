@@ -21,8 +21,8 @@ class VehicleController extends Controller
 
             $vehicle = $sale->vehicle()->first();
             $vehicle->stock = $vehicle->stock - $sale->qty;
+            $vehicle->save();
 
-            // return $vehicle;
             return response()->json([
                 'data' => $sale,
                 'message' => 'Sell vehicle successfull'
