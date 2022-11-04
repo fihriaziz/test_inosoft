@@ -23,6 +23,7 @@ class VehicleSeeder extends Seeder
                 'machine' => '1500 CC',
                 'type' => 'MPV'
             ],
+            'stock' => 20,
         ]);
         Vehicle::create([
             'name' => 'Hondra Brio',
@@ -33,6 +34,7 @@ class VehicleSeeder extends Seeder
                 'machine' => '1200 CC',
                 'type' => 'MPV'
             ],
+            'stock' => 15,
         ]);
         Vehicle::create([
             'name' => 'Xenia',
@@ -43,6 +45,7 @@ class VehicleSeeder extends Seeder
                 'machine' => '1800 CC',
                 'type' => 'MPV'
             ],
+            'stock' => 10,
         ]);
     }
 }
