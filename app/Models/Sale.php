@@ -8,7 +8,7 @@ use Jenssegers\Mongodb\Eloquent\Model;
 class Sale extends Model
 {
     protected $connection = "mongodb";
-    protected $fillable = ['name', 'stok'];
+    protected $fillable = ['vehicle_id', 'user_id', 'jumlah', 'total'];
 
     use HasFactory;
 }

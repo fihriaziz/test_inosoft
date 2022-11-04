@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,6 +17,10 @@ class CreateSalesTable extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Vehicle::class);
+            $table->foreignIdFor(User::class);
+            $table->integer('jumlah');
+            $table->integer('total');
             $table->timestamps();
         });
     }
