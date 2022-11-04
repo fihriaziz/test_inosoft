@@ -1,3 +1,7 @@
+## installation
+
+<hr/>
+
 -   git clone https://github.com/fihriaziz/test_inosoft.git
 -   cd test_inosoft
 -   cp .env.example .env
