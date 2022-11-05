@@ -2,7 +2,8 @@
 
 namespace App\Service;
 
-use App\Models\Sale;
+use App\Models\SaleReport;
+use App\Models\Vehicle;
 use App\Repositories\Sale\SaleRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -24,8 +25,7 @@ class VehicleService
 
     public function sale(Request $req)
     {
-        $input = $req->all();
-        $validator = Validator::make($input, [
+        $validator = Validator::make($req->all(), [
             'vehicle_id' => 'required',
             'user_id' => 'required',
             'qty' => 'required'
@@ -35,13 +35,13 @@ class VehicleService
             throw new InvalidArgumentException($validator->errors()->first());
         }
 
-        if (is_null($this->saleRepository->getById($req->id))) {
+        if (!$this->saleRepository->getById($req->vehicle_id)) {
             throw new InvalidArgumentException('Not found id');
         }
 
-        $this->saleRepository->sale($req);
-        $this->saleRepository->createReport($req);
+        $sell = $this->saleRepository->sale($req);
 
-        return;
+        $report = $this->saleRepository->createReport($req);
+        return $sell;
     }
 }

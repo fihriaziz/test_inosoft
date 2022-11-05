@@ -33,10 +33,7 @@ class SaleRepository
             $vehicle->stock = $vehicle->stock - $sale->qty;
             $vehicle->save();
 
-            return response()->json([
-                'data' => $sale,
-                'message' => 'Sell vehicle successfull'
-            ], 201);
+            return $sale;
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
