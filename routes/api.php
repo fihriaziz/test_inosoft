@@ -18,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('jwt.verify')->group(function () {
-    Route::get('/stocks', [VehicleController::class, 'stock']);
+    Route::get('/stocks', [VehicleController::class, 'stock'])->name('stock');
 
-    Route::post('/sale', [VehicleController::class, 'store']);
+    Route::post('/sale', [VehicleController::class, 'store'])->name('sale');
 
-    Route::get('/report/{id}', [ReportController::class, 'reportById']);
-    Route::get('/reports', [ReportController::class, 'reportAll']);
+    Route::get('/report/{id}', [ReportController::class, 'reportById'])->name('reportById');
+    Route::get('/reports', [ReportController::class, 'reportAll'])->name('reports');
 });
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login'])->name('login');
