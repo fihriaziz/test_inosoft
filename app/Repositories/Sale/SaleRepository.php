@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 
 class SaleRepository
 {
-    public function getAll()
+    public function getStock()
     {
-        $sale = Sale::all();
-        return response()->json([
-            'data' => $sale,
-            'message' => 'Get all data'
-        ], 200);
+        try {
+            $stock = Vehicle::all();
+
+            return response()->json(['data' => $stock, 'message' => 'Get stock vehicle']);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
     }
 
     public function sale(Request $req)
@@ -31,10 +33,7 @@ class SaleRepository
             $vehicle->stock = $vehicle->stock - $sale->qty;
             $vehicle->save();
 
-            return response()->json([
-                'data' => $sale,
-                'message' => 'Sell vehicle successfull'
-            ], 201);
+            return $sale;
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
