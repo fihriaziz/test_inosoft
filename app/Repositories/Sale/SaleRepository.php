@@ -18,6 +18,17 @@ class SaleRepository
         ], 200);
     }
 
+    public function getStock()
+    {
+        try {
+            $stock = Vehicle::all();
+
+            return response()->json(['data' => $stock, 'message' => 'Get stock vehicle']);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
     public function sale(Request $req)
     {
         try {

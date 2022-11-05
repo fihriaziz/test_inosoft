@@ -16,6 +16,17 @@ class VehicleController extends Controller
         $this->saleRepository = $saleRepository;
     }
 
+    // stock
+    public function stock()
+    {
+        try {
+            $stock = $this->saleRepository->getStock();
+            return $stock;
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
+        }
+    }
+
     // sale
     public function store(Request $req)
     {
