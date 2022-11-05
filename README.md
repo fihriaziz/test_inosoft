@@ -9,5 +9,5 @@
 -   composer install
 -   php artisan key:generate
 -   php artisan migrate:fresh --seed
--   php artisan jwt:secrets
+-   php artisan jwt:secret
 -   php artisan serve
