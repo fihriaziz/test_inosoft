@@ -9,15 +9,6 @@ use Illuminate\Http\Request;
 
 class SaleRepository
 {
-    public function getAll()
-    {
-        $sale = Sale::all();
-        return response()->json([
-            'data' => $sale,
-            'message' => 'Get all data'
-        ], 200);
-    }
-
     public function getStock()
     {
         try {
