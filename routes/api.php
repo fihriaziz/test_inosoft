@@ -21,6 +21,7 @@ Route::group(['middleware' => 'api'], function () {
 
 Route::get('/stocks', [VehicleController::class, 'getStock']);
 
-Route::post('/sell', [VehicleController::class, 'store']);
+Route::post('/sale', [VehicleController::class, 'store']);
+
 
 Route::post('/login', [AuthController::class, 'login']);

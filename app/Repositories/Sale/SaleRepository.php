@@ -3,6 +3,8 @@
 namespace App\Repositories\Sale;
 
 use App\Models\Sale;
+use App\Models\SaleReport;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 class SaleRepository
@@ -16,7 +18,7 @@ class SaleRepository
         ], 200);
     }
 
-    public function sell(Request $req)
+    public function sale(Request $req)
     {
         try {
             $sale = new Sale();
@@ -35,6 +37,27 @@ class SaleRepository
             ], 201);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
+        }
+    }
+
+    public function getById($id)
+    {
+        $vehicle = Vehicle::find($id);
+        return $vehicle;
+    }
+
+    public function createReport(Request $req)
+    {
+        try {
+            $report = SaleReport::create([
+                'vehicle_id' => $req->vehicle_id,
+                'user_id' => $req->user_id,
+                'qty' => $req->qty
+            ]);
+
+            return response()->json($report);
+        } catch (\Exception $e) {
+            return response()->json($e->getMessage());
         }
     }
 }

@@ -16,11 +16,18 @@ class VehicleController extends Controller
         $this->saleRepository = $saleRepository;
     }
 
-    // sell
+    // sale
     public function store(Request $req)
     {
         try {
-            return $this->saleRepository->sell($req);
+            $sale = $this->saleRepository->sale($req);
+
+            $saleReport = $this->saleRepository->getById($req->vehicle_id);
+            if ($saleReport) {
+                $saleReport = $this->saleRepository->createReport($req);
+            }
+
+            return $sale;
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
