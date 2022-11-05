@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\Sale\SaleRepository;
 use App\Service\VehicleService;
 use Illuminate\Http\Request;
 
 class VehicleController extends Controller
 {
-    protected $vehicleService;
+    protected $saleRepository, $vehicleService;
 
-    public function __construct(VehicleService $vehicleService)
+    public function __construct(SaleRepository $saleRepository, VehicleService $vehicleService)
     {
+        $this->saleRepository = $saleRepository;
         $this->vehicleService = $vehicleService;
     }
 
