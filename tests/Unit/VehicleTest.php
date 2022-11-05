@@ -8,13 +8,13 @@ class VehicleTest extends TestCase
 {
     public function testSale()
     {
-        $data = [
-            "user_id" => "6365f4e705157820610a48b9",
-            "vehicle_id" => "6365f4e705157820610a48ba",
-            "qty" => 1
+        $sale = [
+            'vehicle_id' => '63665ca7ac6e8cc613067dfb',
+            'user_id' => '63665ca7ac6e8cc613067df9',
+            'qty' => 2
         ];
 
-        $this->post(route('sale'), $data)
+        $this->post(route('sale'), $sale)
             ->assertStatus(200);
     }
 
