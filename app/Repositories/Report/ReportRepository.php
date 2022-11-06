@@ -32,7 +32,7 @@ class ReportRepository
             return response()->json([
                 'data' => $reports,
                 'message' => 'Get all report'
-            ]);
+            ], 200);
         } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }

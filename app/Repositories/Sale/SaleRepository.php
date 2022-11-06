@@ -14,7 +14,7 @@ class SaleRepository
         try {
             $stock = Vehicle::all();
 
-            return response()->json(['data' => $stock, 'message' => 'Get stock vehicle']);
+            return response()->json(['data' => $stock, 'message' => 'Get stock vehicle'], 200);
         } catch (\Exception $e) {
             return response()->json($e->getMessage());
         }
