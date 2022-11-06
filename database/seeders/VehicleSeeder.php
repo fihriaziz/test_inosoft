@@ -47,5 +47,27 @@ class VehicleSeeder extends Seeder
             ],
             'stock' => 10,
         ]);
+        Vehicle::create([
+            'name' => 'Honda',
+            'year' => '2015',
+            'color' => 'Hitam',
+            'price' => 160000000,
+            'car' => [
+                'machine' => '150 CC',
+                'type' => 'MPV'
+            ],
+            'stock' => 7,
+        ]);
+        Vehicle::create([
+            'name' => 'Scopio',
+            'year' => '2020',
+            'color' => 'Merah',
+            'price' => 100000000,
+            'car' => [
+                'machine' => '120 CC',
+                'type' => 'MPV'
+            ],
+            'stock' => 2,
+        ]);
     }
 }

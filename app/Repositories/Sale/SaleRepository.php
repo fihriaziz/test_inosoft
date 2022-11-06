@@ -47,10 +47,12 @@ class SaleRepository
 
     public function createReport(Request $req)
     {
+        $sale = Sale::where('id', $req->id)->first();
         try {
             $report = SaleReport::create([
                 'vehicle_id' => $req->vehicle_id,
                 'user_id' => $req->user_id,
+                'sale_id' => $sale->id,
                 'qty' => $req->qty
             ]);
 

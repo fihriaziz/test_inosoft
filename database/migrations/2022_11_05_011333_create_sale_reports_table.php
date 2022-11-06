@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Sale;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +20,7 @@ class CreateSaleReportsTable extends Migration
             $table->id();
             $table->foreignIdFor(Vehicle::class);
             $table->foreignIdFor(User::class);
+            $table->foreignIdFor(Sale::class);
             $table->integer('qty');
             $table->timestamps();
         });

@@ -10,5 +10,5 @@ class SaleReport extends Model
     use HasFactory;
 
     protected $connection = 'mongodb';
-    protected $fillable = ['user_id', 'vehicle_id', 'qty'];
+    protected $fillable = ['user_id', 'vehicle_id', 'sale_id', 'qty'];
 }
