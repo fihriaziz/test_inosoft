@@ -12,7 +12,7 @@ class ReportRepository
         try {
             $report = SaleReport::find($id);
             if (!$report) {
-                return response()->json(['message' => 'Report not found', 404]);
+                return response()->json(['message' => 'Report not found'],404);
             }
 
             return response()->json([
